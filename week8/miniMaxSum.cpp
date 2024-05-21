@@ -7,19 +7,13 @@ string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
-/*
- * Complete the 'miniMaxSum' function below.
- *
- * The function accepts INTEGER_ARRAY arr as parameter.
- */
-
 void miniMaxSum(vector<int> arr) {
     sort(arr.begin(), arr.end());
-    int min = 0;
-    int max = 0;
+    long min = 0;
+    long max = 0;
     for(int i = 0; i<4; i++){
         min += arr[i];
-        max += arr[arr.size()-1-i];
+        max += arr[4-i];
     }
     cout << min ;
     cout << " ";
