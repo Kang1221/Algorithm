@@ -6,17 +6,41 @@ string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
-/*
- * Complete the 'getTotalX' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts following parameters:
- *  1. INTEGER_ARRAY a
- *  2. INTEGER_ARRAY b
- */
+int gcd(int x, int y){
+    int X = max(x,y);
+    int Y = min(x,y);
+    int R = 0;
+    while (X%Y!=0) {
+        R = X%Y;
+        X = Y;
+        Y = R;
+    }
+    return Y;
+}
+
+int lcm(vector<int> a){
+    int result = a[0];
+    for(size_t i=1; i<a.size(); i++){
+        int gcpA = gcd(result, a[i]);
+        int lcm = result*a[i]/gcpA;
+        result = lcm;
+    }
+    return result;
+}
 
 int getTotalX(vector<int> a, vector<int> b) {
-
+    int A = lcm(a); 
+    int B = b[0];
+    for(size_t i=1; i<b.size(); i++){
+        B = gcd(B, b[i]);
+    }
+    
+    int result = 0;
+    for(int i =A; i<=B; i+=A){
+        if(B%i==0)
+            result++;
+    }
+    return result;
 }
 
 int main()
